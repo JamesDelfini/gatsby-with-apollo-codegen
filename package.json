@@ -5,6 +5,10 @@
   "author": "Jason Lengstorf <jason@gatsbyjs.com>",
   "dependencies": {
     "@apollo/client": "^3.0.2",
+    "@apollo/react-common": "^3.1.4",
+    "@apollo/react-hooks": "^4.0.0",
+    "@graphql-codegen/cli": "^1.17.6",
+    "@graphql-codegen/typescript-react-apollo": "^1.17.6",
     "cross-fetch": "^3.0.5",
     "gatsby": "^2.24.10",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
@@ -22,6 +26,9 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "codegen": "npm run codegen:prebuild && npm run codegen:postbuild",
+    "codegen:prebuild": "graphql-codegen --config codegen-postbuild.yml",
+    "codegen:postbuild": "graphql-codegen --config codegen-prebuild.yml",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"

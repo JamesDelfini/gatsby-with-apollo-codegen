@@ -1,0 +1,15 @@
+overwrite: true
+schema: 'https://rickandmortyapi.com/graphql'
+documents:
+  - 'src/graphql/prebuild/*.graphql'
+generates:
+  src/generated/prebuild/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      gqlImport: '@apollo/client#gql'
+      withHOC: false
+      withComponent: false
+      withHooks: true

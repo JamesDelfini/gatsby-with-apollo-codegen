@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import { graphql } from 'gatsby';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+// import { useQuery } from '@apollo/client';
+// import gql from 'graphql-tag';
+import { useMemeQuery } from '../generated/postbuild/graphql';
 
 // This query is executed at build time by Gatsby.
 export const GatsbyQuery = graphql`
@@ -16,19 +17,19 @@ export const GatsbyQuery = graphql`
 `;
 
 // This query is executed at run time by Apollo.
-const APOLLO_QUERY = gql`
-  {
-    meme(where: { id: "cjke2xlf9nhd90953khilyzja" }) {
-      photo {
-        url(
-          transformation: {
-            image: { resize: { width: 600, height: 600, fit: crop } }
-          }
-        )
-      }
-    }
-  }
-`;
+// const APOLLO_QUERY = gql`
+//   {
+//     meme(where: { id: "cjke2xlf9nhd90953khilyzja" }) {
+//       photo {
+//         url(
+//           transformation: {
+//             image: { resize: { width: 600, height: 600, fit: crop } }
+//           }
+//         )
+//       }
+//     }
+//   }
+// `;
 
 interface indexProps {
   data: {
@@ -45,7 +46,7 @@ interface indexProps {
 const index: React.FC<indexProps> = ({ data: response }) => {
   const { character } = response.rickAndMorty;
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY);
+  const { loading, error, data } = useMemeQuery();
 
   return (
     <div style={{ textAlign: 'center', width: '600px', margin: '50px auto' }}>

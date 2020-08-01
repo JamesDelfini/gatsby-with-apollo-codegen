@@ -1,0 +1,15 @@
+overwrite: true
+schema: 'https://api-euwest.graphcms.com/v1/cjke2kn7p00ol01d2pinkptdj/master'
+documents:
+  - 'src/graphql/postbuild/*.graphql'
+generates:
+  src/generated/postbuild/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      gqlImport: '@apollo/client#gql'
+      withHOC: false
+      withComponent: false
+      withHooks: true

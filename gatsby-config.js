@@ -11,15 +11,15 @@ module.exports = {
         url: 'https://rickandmortyapi.com/graphql',
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-graphql-codegen`,
-    //   options: {
-    //     fileName: `./gatsby-graphql.ts`,
-    //     documentPaths: [
-    //       './src/graphql/*.graphql',
-    //       './node_modules/gatsby-*/**/*.js',
-    //     ],
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `./gatsby-graphql.ts`,
+        documentPaths: [
+          './src/graphql/*.graphql',
+          './node_modules/gatsby-*/**/*.js',
+        ],
+      },
+    },
   ],
 };
