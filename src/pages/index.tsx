@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { graphql } from 'gatsby';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
@@ -30,11 +30,21 @@ const APOLLO_QUERY = gql`
   }
 `;
 
-export default ({
+interface indexProps {
   data: {
-    rickAndMorty: { character },
-  },
-}) => {
+    rickAndMorty: {
+      character: {
+        image: string;
+        url: string;
+        name: string;
+      };
+    };
+  };
+}
+
+const index: React.FC<indexProps> = ({ data: response }) => {
+  const { character } = response.rickAndMorty;
+
   const { loading, error, data } = useQuery(APOLLO_QUERY);
 
   return (
@@ -64,3 +74,5 @@ export default ({
     </div>
   );
 };
+
+export default index;

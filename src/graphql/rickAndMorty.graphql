@@ -1,0 +1,6 @@
+query rickAndMorty {
+  character(id: 1) {
+    name
+    image
+  }
+}
