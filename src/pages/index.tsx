@@ -1,78 +1,65 @@
-import React, { ReactNode } from 'react';
-import { graphql } from 'gatsby';
-// import { useQuery } from '@apollo/client';
-// import gql from 'graphql-tag';
-import { useMemeQuery } from '../generated/postbuild/graphql';
+import React from 'react';
+import PostBuild from './postbuild';
+import PreBuildStaticQuery from './prebuild-static_query';
+import PreBuildStaticQueryHook from './prebuild-static_query_hook';
+import Layout from './components/layout';
+import { useStaticQuery, graphql as gql, Link } from 'gatsby';
 
-// This query is executed at build time by Gatsby.
-export const GatsbyQuery = graphql`
-  {
-    rickAndMorty {
-      character(id: 1) {
-        name
-        image
+const index: React.FC = () => {
+  const data = useStaticQuery(
+    gql`
+      query GetSiteRickAndMortyPages {
+        allSitePage(filter: { path: { regex: "/rickandmorty/" } }) {
+          edges {
+            node {
+              id
+              path
+            }
+          }
+        }
       }
-    }
-  }
-`;
+    `
+  );
 
-// This query is executed at run time by Apollo.
-// const APOLLO_QUERY = gql`
-//   {
-//     meme(where: { id: "cjke2xlf9nhd90953khilyzja" }) {
-//       photo {
-//         url(
-//           transformation: {
-//             image: { resize: { width: 600, height: 600, fit: crop } }
-//           }
-//         )
-//       }
-//     }
-//   }
-// `;
-
-interface indexProps {
-  data: {
-    rickAndMorty: {
-      character: {
-        image: string;
-        url: string;
-        name: string;
-      };
-    };
-  };
-}
-
-const index: React.FC<indexProps> = ({ data: response }) => {
-  const { character } = response.rickAndMorty;
-
-  const { loading, error, data } = useMemeQuery();
+  const allSitePages = data.allSitePage.edges;
 
   return (
-    <div style={{ textAlign: 'center', width: '600px', margin: '50px auto' }}>
-      <h1>{character.name} With His Friend Sara</h1>
-      <p>
-        Rick & Morty API data loads at build time. Sara Vieira’s meme API loads
-        at runtime.
-      </p>
+    <Layout>
       <div>
-        <img
-          src={character.image}
-          alt={character.name}
-          style={{ width: 300 }}
-        />
-
-        {loading && <p>Loading Sara...</p>}
-        {error && <p>Error: ${error.message}</p>}
-        {data && data.meme && data.meme.photo && (
-          <img
-            src={data.meme.photo.url}
-            alt="Sara Vieira"
-            style={{ maxWidth: 300 }}
-          />
-        )}
+        <hr />
+        <PostBuild />
+        <hr />
+        <PreBuildStaticQuery />
+        <hr />
+        <PreBuildStaticQueryHook />
+        <hr />
+        <p
+          style={{
+            textAlign: 'justify',
+          }}
+        >
+          Rick & Morty API data loads at build time. Using Gatsby "node" which
+          is the center data system utilizing <b>createPages</b> to create a
+          page on build time.
+        </p>
+        <ul
+          style={{
+            textAlign: 'left',
+          }}
+        >
+          <li>
+            <Link to="/prebuild">SitePage /prebuild</Link>
+          </li>
+          {allSitePages.map(({ node }: Record<string, any>, index: number) => {
+            return (
+              <li>
+                <Link to={node.path}>{node.id}</Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-    </div>
+    </Layout>
   );
 };
 

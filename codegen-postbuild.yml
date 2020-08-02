@@ -3,13 +3,19 @@ schema: 'https://api-euwest.graphcms.com/v1/cjke2kn7p00ol01d2pinkptdj/master'
 documents:
   - 'src/graphql/postbuild/*.graphql'
 generates:
-  src/generated/postbuild/graphql.ts:
+  generated/postbuild/graphql.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
     config:
+      reactApolloVersion: 3
       gqlImport: '@apollo/client#gql'
       withHOC: false
       withComponent: false
       withHooks: true
+  generated/postbuild/introspection.json:
+    plugins:
+      - 'introspection'
+    config:
+      minify: true

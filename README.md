@@ -9,5 +9,6 @@
 
 This is a minimal example of using Gatsby and Apollo together. It’s GraphQL all the way down! 🐢
 
-Boiler Plate of [gatsby-with-apollo](https://github.com/jlengstorf/gatsby-with-apollo)
-Additional graphql codegen for type scripting using [gatsby-plugin-graphql-codegen](https://www.gatsbyjs.org/packages/gatsby-plugin-graphql-codegen/)
+Boiler Plate using [gatsby-with-apollo](https://github.com/jlengstorf/gatsby-with-apollo) and additional graphql codegen for type definition scripting using [graphql code generator](https://graphql-code-generator.com/).
+
+Transformed Boiler Plate to TypeScript React and using Post-Build and Pre-Build Apollo GraphQL using Gatsby.

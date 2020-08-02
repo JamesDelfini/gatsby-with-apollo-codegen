@@ -1,17 +1,15 @@
 {
-  "name": "gatsby-with-apollo",
-  "description": "Gatsby with Apollo Boost",
+  "name": "gatsby-with-apollo-codgen",
+  "description": "Gatsby with Apollo Boost Codegen",
+  "author": "",
   "version": "1.0.0",
-  "author": "Jason Lengstorf <jason@gatsbyjs.com>",
   "dependencies": {
     "@apollo/client": "^3.0.2",
-    "@apollo/react-common": "^3.1.4",
     "@apollo/react-hooks": "^4.0.0",
     "@graphql-codegen/cli": "^1.17.6",
     "@graphql-codegen/typescript-react-apollo": "^1.17.6",
     "cross-fetch": "^3.0.5",
     "gatsby": "^2.24.10",
-    "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-source-graphql": "^2.0.6",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
@@ -20,24 +18,29 @@
   "keywords": [
     "gatsby",
     "apollo",
-    "apollo-boost"
+    "apollo-boost",
+    "graphql",
+    "codegen",
+    "graphql codegen"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "prebuild": "npx gatsby clean",
+    "build": "npx gatsby build",
+    "predevelop": "npx gatsby clean",
+    "develop": "npx gatsby develop",
     "codegen": "npm run codegen:prebuild && npm run codegen:postbuild",
-    "codegen:prebuild": "graphql-codegen --config codegen-postbuild.yml",
-    "codegen:postbuild": "graphql-codegen --config codegen-prebuild.yml",
+    "codegen:postbuild": "graphql-codegen --config codegen-postbuild.yml",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@graphql-codegen/introspection": "^1.17.6",
     "prettier": "^1.14.2"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jlengstorf/gatsby-with-apollo"
+    "url": "https://github.com/JamesDelfini/gatsby-with-apollo-codegen"
   }
 }

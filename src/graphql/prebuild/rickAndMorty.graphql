@@ -1,6 +1,8 @@
-query rickAndMorty {
-  character(id: 1) {
-    name
-    image
+query RickAndMorty {
+  rickAndMorty {
+    character(id: 1) {
+      name
+      image
+    }
   }
 }
