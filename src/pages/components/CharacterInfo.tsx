@@ -9,7 +9,7 @@ export interface CharacterCardsDetails {
   status: string;
 }
 
-export const CharacterCards: React.FC<CharacterCardsDetails> = ({
+const CharacterCards: React.FC<CharacterCardsDetails> = ({
   name,
   image,
   species,
@@ -38,3 +38,5 @@ export const CharacterCards: React.FC<CharacterCardsDetails> = ({
     </div>
   );
 };
+
+export default CharacterCards;

@@ -1,0 +1,25 @@
+overwrite: true
+schema: 'http://localhost:8000/___graphql'
+documents:
+  - 'src/graphql/prebuild/*.graphql'
+generates:
+  generated/prebuild/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      reactApolloVersion: 3
+      gqlImport: 'gatsby#graphql'
+      withHOC: false
+      withComponent: false
+      withHooks: false
+      namingConvention:
+        enumValues: keep
+        transformUnderscore: false
+
+  generated/prebuild/introspection.json:
+    plugins:
+      - 'introspection'
+    config:
+      minify: true

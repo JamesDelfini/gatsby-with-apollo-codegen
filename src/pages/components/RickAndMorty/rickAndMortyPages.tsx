@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../layout';
-import { CharacterCards, CharacterCardsDetails } from '../CharacterInfo';
+import CharacterCards, { CharacterCardsDetails } from '../CharacterInfo';
 
 interface RickAndMortyPagesProps {
   pageContext: CharacterCardsDetails;

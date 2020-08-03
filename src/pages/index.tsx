@@ -47,12 +47,12 @@ const index: React.FC = () => {
             textAlign: 'left',
           }}
         >
-          <li>
+          <li key={'SitePage /prebuild'.trim().toLowerCase()}>
             <Link to="/prebuild">SitePage /prebuild</Link>
           </li>
           {allSitePages.map(({ node }: Record<string, any>, index: number) => {
             return (
-              <li>
+              <li key={node.id.trim().toLowerCase()}>
                 <Link to={node.path}>{node.id}</Link>
               </li>
             );
